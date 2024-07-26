@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Services\AuthService;
 use App\Traits\WithApiResponses;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -24,11 +25,13 @@ class AuthController extends Controller
         $request->authenticate();
 
         if (!auth()->attempt($request->only('email', 'password'))) {
-            return $this->error('Invalid credentials', 401);
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
         }
 
         $token = $this->authService->login($request->only('email', 'password'));
 
-        return $this->ok(['token' => $token], 'Login successful');
+        return $this->ok(['token' => $token], 'Login successful.');
     }
 }
