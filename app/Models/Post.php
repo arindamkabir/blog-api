@@ -9,10 +9,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Mews\Purifier\Casts\CleanHtml;
 
 class Post extends Model
 {
     use HasFactory;
+
+    // Casts
+
+    protected $casts = [
+        'content' => CleanHtml::class,
+    ];
 
     // Relationships
 
