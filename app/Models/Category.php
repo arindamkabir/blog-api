@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use WithGeneratedUniqueSlugTrait, HasFactory;
+    use WithGeneratedUniqueSlugTrait, HasFactory, SoftDeletes;
 
     // Relationships
 

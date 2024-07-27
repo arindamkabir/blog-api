@@ -10,11 +10,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Mews\Purifier\Casts\CleanHtml;
 
 class Post extends Model
 {
-    use WithGeneratedUniqueSlugTrait, HasFactory;
+    use WithGeneratedUniqueSlugTrait, HasFactory, SoftDeletes;
 
     // Casts
 
